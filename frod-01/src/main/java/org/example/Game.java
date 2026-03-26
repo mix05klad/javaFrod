@@ -1,44 +1,37 @@
 package org.example;
 
+import java.util.Random;
+
 public class Game {
 
-    private int randomnumber;
+    private final int number;
     private int attempts;
 
-    public Game(int randomnumber) {
-        this.randomnumber = randomnumber;
+    public Game() {
+        Random random = new Random();
+        this.number = random.nextInt(100) + 1;
         this.attempts = 0;
     }
 
-    public void setRandomnumber(int randomnumber) {
-        this.randomnumber = randomnumber;
-    }
-
-    public void setAttempts(int attempts) {
-        this.attempts = attempts;
-    }
-
-    public int getRandomnumber() {
-        return randomnumber;
-    }
     public int getAttempts() {
         return attempts;
     }
 
-
-    public boolean checkguess(int guess) {
-
+    public boolean guessNumber(int guess) {
         attempts++;
 
-        if (guess < randomnumber) {
+        if (guess < number) {
             System.out.println("Your guess is too low");
-        } else if(guess > randomnumber) {
-            System.out.println("Your guess is too high");
-        } else {
-            return true;
+            return false;
         }
 
-        return false;
+        if(guess > number) {
+            System.out.println("Your guess is too high");
+            return false;
+        }
+
+        System.out.println("Your guess is correct!");
+        return true;
     }
 }
 

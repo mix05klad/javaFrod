@@ -1,35 +1,27 @@
 package org.example;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
 
-        System.out.println("=== Guess the number ===");
+        Game game = new  Game();
 
-        int randomnumber = random.nextInt(100) + 1;
-        Game game = new  Game(randomnumber);
+        System.out.println("I have chosen a number from 1 to 100.");
+        System.out.println("Try to guess it!");
+        System.out.println();
 
-        System.out.println("I have choosen a number from 1 to 100!!");
-        System.out.println("Try to guess it!!");
-
-        while (true) {
+        int guess;
+        do {
             System.out.println("Guess the number: ");
-            int guess = scanner.nextInt();
-
-            boolean result = game.checkguess(guess);
-
-            if (result) {
-                System.out.println("You guessed it!");
-                System.out.println("You found the number in " + game.getAttempts() + " attempts!");
-                break;
-            }
-        }
+            guess = scanner.nextInt();
+            System.out.println();
+        } while (!game.guessNumber(guess));
 
         scanner.close();
+
+        System.out.println("You found the number '" + guess + "' in " + game.getAttempts() + " attempts.");
     }
 }
